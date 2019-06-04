@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FormActivity">
+
+    <EditText
+        android:id="@+id/newTaskName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Task Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/newTaskDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Task Description"
+        app:layout_constraintEnd_toEndOf="@+id/newTaskName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/newTaskName"
+        app:layout_constraintTop_toBottomOf="@+id/newTaskName" />
+
+    <EditText
+        android:id="@+id/newTaskStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Task Status"
+        app:layout_constraintEnd_toEndOf="@+id/newTaskDescription"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/newTaskDescription"
+        app:layout_constraintTop_toBottomOf="@+id/newTaskDescription" />
+
+    <Button
+        android:id="@+id/submitNewTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:onClick="onTaskSubmission"
+        android:text="New Task"
+        app:layout_constraintEnd_toEndOf="@+id/newTaskStatus"
+        app:layout_constraintStart_toStartOf="@+id/newTaskStatus"
+        app:layout_constraintTop_toBottomOf="@+id/newTaskStatus" />
+</androidx.constraintlayout.widget.ConstraintLayout>
