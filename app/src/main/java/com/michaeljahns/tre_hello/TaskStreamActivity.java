@@ -39,11 +39,6 @@ public class TaskStreamActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void onCourierForm(View view){
-        Intent intent = new Intent(this, FormActivity.class);
-        startActivity(intent);
-    }
-
     public List<Task> getTasks() {
         final List<Task> tasks = new ArrayList<>();
 
@@ -54,16 +49,23 @@ public class TaskStreamActivity extends AppCompatActivity {
                     public void onComplete(@NonNull com.google.android.gms.tasks.Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             QuerySnapshot snap = task.getResult();
+
                             for(DocumentSnapshot doc : snap.getDocuments()){
                                 Task taskObject = doc.toObject(Task.class);
                                 tasks.add(taskObject);
                             }
+                            adapter.setTasks(tasks);
                         } else {
                             Log.d("MASSIVE FAILURE:", "There was a slight error");
                         }
                     }
                 });
         return tasks;
+    }
+
+    public void onCourierForm(View view){
+        Intent intent = new Intent(this, FormActivity.class);
+        startActivity(intent);
     }
 
 }

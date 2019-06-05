@@ -1,9 +1,12 @@
 package com.michaeljahns.tre_hello;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class FormActivity extends AppCompatActivity {
     EditText taskName;
     EditText taskDescription;
-    EditText taskStatus;
+    Spinner taskPhase;
     FirebaseFirestore database;
 
     @Override
@@ -26,16 +29,28 @@ public class FormActivity extends AppCompatActivity {
 
         taskName = findViewById(R.id.newTaskName);
         taskDescription = findViewById(R.id.newTaskDescription);
-        taskStatus = findViewById(R.id.newTaskStatus);
+        taskPhase = findViewById(R.id.newTaskPhase);
+
+        ArrayAdapter<String> phases = initializeSpinner();
+        taskPhase.setAdapter(phases);
 
         database = FirebaseFirestore.getInstance();
+    }
+
+    public ArrayAdapter<String> initializeSpinner(){
+        ArrayAdapter<String> output = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.phases));
+        output.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return output;
     }
 
     public void onTaskSubmission(View view) {
         Task task = new Task();
         task.setTask(taskName.getText().toString());
         task.setDescription(taskDescription.getText().toString());
-        task.setStatus(taskStatus.getText().toString());
+        task.setStatus(taskPhase.getSelectedItem().toString());
 
         database.collection("Tasks")
                 .add(task)
@@ -52,5 +67,7 @@ public class FormActivity extends AppCompatActivity {
                     }
                 });
 
+        Intent intent = new Intent(this, TaskStreamActivity.class);
+        startActivity(intent);
     }
 }

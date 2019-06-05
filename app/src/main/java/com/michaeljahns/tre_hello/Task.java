@@ -12,7 +12,7 @@ public class Task {
     public Task(String task, String description, String status){
         this.task = task;
         this.description = description;
-        this.status = status;
+        this.status = "New";
     }
 
 

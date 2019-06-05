@@ -1,8 +1,10 @@
 package com.michaeljahns.tre_hello;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,23 +18,38 @@ public class TaskLayoutAdapter extends RecyclerView.Adapter<TaskLayoutAdapter.Ta
         public TextView taskName;
         public TextView taskDescription;
         public TextView taskStatus;
+        public ImageView taskPeer;
 
         public TaskHolder(@NonNull View itemView) {
             super(itemView);
 
-            this.taskName = itemView.findViewById(R.id.viewTaskName);
-            this.taskDescription = itemView.findViewById(R.id.viewTaskDescription);
-            this.taskStatus = itemView.findViewById(R.id.viewTaskStatus);
+            taskName = itemView.findViewById(R.id.viewTaskName);
+            taskDescription = itemView.findViewById(R.id.viewTaskDescription);
+            taskStatus = itemView.findViewById(R.id.viewTaskStatus);
+            taskPeer = itemView.findViewById(R.id.viewTask_Image);
+
+            taskPeer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    onCourierSingleTask(view);
+                }
+            });
+
         }
 
         public void setTask(Task task) {
-            this.taskName.setText(String.format("%s", task.getTask()));
+            this.taskName.setText(task.getTask());
             this.taskDescription.setText(task.getDescription());
-            this.taskStatus.setText(task.getStatus());
+            this.taskStatus.setText("Status: " + task.getStatus());
         }
     }
 
     private List<Task> tasks;
+
+    public void setTasks(List<Task> tasks){
+        this.tasks = tasks;
+        this.notifyDataSetChanged();
+    }
 
     public TaskLayoutAdapter(List<Task> tasks) {
         this.tasks = tasks;
