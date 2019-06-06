@@ -1,4 +1,4 @@
-package com.michaeljahns.tre_hello;
+package com.michaeljahns.tre_hello.tasks.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.michaeljahns.tre_hello.R;
+import com.michaeljahns.tre_hello.tasks.Task;
 
 public class FormActivity extends AppCompatActivity {
     EditText taskName;

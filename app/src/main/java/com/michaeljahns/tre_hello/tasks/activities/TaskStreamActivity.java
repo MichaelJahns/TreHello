@@ -1,4 +1,4 @@
-package com.michaeljahns.tre_hello;
+package com.michaeljahns.tre_hello.tasks.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.michaeljahns.tre_hello.R;
+import com.michaeljahns.tre_hello.tasks.Task;
+import com.michaeljahns.tre_hello.tasks.TaskLayoutAdapter;
+import com.michaeljahns.tre_hello.tasks.activities.FormActivity;
 
 import java.util.ArrayList;
 import java.util.List;

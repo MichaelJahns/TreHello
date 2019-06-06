@@ -1,9 +1,12 @@
-package com.michaeljahns.tre_hello;
+package com.michaeljahns.tre_hello.tasks;
+
+import java.util.HashSet;
 
 public class Task {
     private String task;
     private String description;
     private String status;
+    private HashSet<String> assigned;
 
     public Task(){
 

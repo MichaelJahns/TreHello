@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".user.UserProfileActivity">
+
+    <TextView
+        android:id="@+id/labelPreferedName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is your prefered name?" />
+
+    <EditText
+        android:id="@+id/profilePreferredName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="prefered name" />
+
+    <TextView
+        android:id="@+id/labelBiography"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About me" />
+
+    <EditText
+        android:id="@+id/profileBiography"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="biography"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/labelProfileSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is your Sign?" />
+
+    <Spinner
+        android:id="@+id/profileSignSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog" />
+
+    <Button
+        android:id="@+id/submitProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSubmitProfile"
+        android:text="Update Profile" />
+
+
+</LinearLayout>

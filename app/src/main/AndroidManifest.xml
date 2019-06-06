@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SingleTaskActivity"></activity>
-        <activity android:name=".TaskStreamActivity" />
-        <activity android:name=".FormActivity" />
+        <activity android:name=".user.UserProfileActivity"></activity>
+        <activity android:name=".tasks.activities.SingleTaskActivity" />
+        <activity android:name=".tasks.activities.TaskStreamActivity" />
+        <activity android:name=".tasks.activities.FormActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

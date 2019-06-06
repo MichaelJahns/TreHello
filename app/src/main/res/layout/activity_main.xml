@@ -40,4 +40,16 @@
         android:text="TreHello User!"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/onCourierProfileEdit"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:onClick="onCourierProfile"
+        android:text="Profile"
+        app:layout_constraintEnd_toEndOf="@+id/toggleLogActions"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/toggleLogActions"
+        app:layout_constraintTop_toBottomOf="@+id/toggleLogActions" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

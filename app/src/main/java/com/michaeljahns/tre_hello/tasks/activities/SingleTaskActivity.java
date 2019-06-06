@@ -1,8 +1,10 @@
-package com.michaeljahns.tre_hello;
+package com.michaeljahns.tre_hello.tasks.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.michaeljahns.tre_hello.R;
 
 public class SingleTaskActivity extends AppCompatActivity {
 
