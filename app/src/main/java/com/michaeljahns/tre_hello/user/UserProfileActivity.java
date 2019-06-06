@@ -36,19 +36,22 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        database = FirebaseFirestore.getInstance();
-
-
         setUP();
         if(user != null){
             userID = user.getUid();
             getUserInformation();
         }
-
     }
 
+    public void setUP(){
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseFirestore.getInstance();
+        profileName = findViewById(R.id.profilePreferredName);
+        profileBio = findViewById(R.id.profileBiography);
+        profileSign = findViewById(R.id.profileSignSpinner);
+        signAdapter = initializeSpinner();
+        profileSign.setAdapter(signAdapter);
+    }
 
     public ArrayAdapter<String> initializeSpinner(){
         ArrayAdapter<String> output = new ArrayAdapter<>(
@@ -80,15 +83,8 @@ public class UserProfileActivity extends AppCompatActivity {
     public void autoFillKnown(DocumentSnapshot doc){
         profileName.setText(doc.get("Preferred Name").toString());
         profileBio.setText(doc.get("Biography").toString());
-        String sign = doc.get("Sign").toString();
-        profileSign.setSelection(signAdapter.getPosition(sign));
-    }
-    public void setUP(){
-        profileName = findViewById(R.id.profilePreferredName);
-        profileBio = findViewById(R.id.profileBiography);
-        profileSign = findViewById(R.id.profileSignSpinner);
-        signAdapter = initializeSpinner();
-        profileSign.setAdapter(signAdapter);
+        String previouslySelectedSign = doc.get("Sign").toString();
+        profileSign.setSelection(signAdapter.getPosition(previouslySelectedSign));
     }
 
     public void onSubmitProfile(View view){
@@ -99,5 +95,4 @@ public class UserProfileActivity extends AppCompatActivity {
         database.collection("Profiles").document(userID).set(profileData);
         this.finish();
     }
-
 }

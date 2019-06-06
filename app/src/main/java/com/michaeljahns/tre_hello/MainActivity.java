@@ -23,31 +23,44 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.michaeljahns.tre_hello.tasks.activities.TaskStreamActivity;
 import com.michaeljahns.tre_hello.user.UserProfileActivity;
+import com.michaeljahns.tre_hello.user.UserTasksActivity;
 
 import java.util.Arrays;
 import java.util.List;
 
-import javax.xml.transform.Result;
-
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
-    Button courierLog;
-    Button courierProfile;
-    FirebaseUser user;
     FirebaseFirestore database;
+    FirebaseUser user;
+
+
+    private ToggleButton toggleLogActions;
+    private Button courierLog;
+    private Button courierProfile;
+    private Button courierUserTasks;
+    private Button courierAllTasks;
+
+    private TextView displayName;
     private static final int RC_SIGN_IN = 1024;
 
+    //Setup
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        courierLog = findViewById(R.id.toggleLogActions);
-        courierProfile = findViewById(R.id.onCourierProfileEdit);
-        database = FirebaseFirestore.getInstance();
+        setUP();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        toggleLogState();
+    }
 
+    public void setUP(){
         firebaseAuth = FirebaseAuth.getInstance();
+        database = FirebaseFirestore.getInstance();
         FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -59,16 +72,17 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         firebaseAuth.addAuthStateListener(authStateListener);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        toggleLogState();
+        toggleLogActions = findViewById(R.id.toggleLogActions);
+        courierLog = findViewById(R.id.toggleLogActions);
+        courierProfile = findViewById(R.id.courierProfileEdit);
+        courierUserTasks = findViewById(R.id.courierUserTasks);
+        courierAllTasks = findViewById(R.id.courierAllTasks);
+
+        displayName = findViewById(R.id.viewDisplayName);
     }
 
     //Log Actions
-
     public void onLogin(View view) {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build());
@@ -133,24 +147,30 @@ public class MainActivity extends AppCompatActivity {
 
     private void toggleLogState(){
         user = FirebaseAuth.getInstance().getCurrentUser();
-
-        TextView displayName = findViewById(R.id.viewDisplayName);
-        ToggleButton toggleLogActions = findViewById(R.id.toggleLogActions);
         if(user != null){
             displayName.setText("Tre-Hello! " + user.getDisplayName() +"!!");
             toggleLogActions.setChecked(false);
             courierProfile.setVisibility(View.VISIBLE);
+            courierAllTasks.setVisibility(View.VISIBLE);
+            courierUserTasks.setVisibility(View.VISIBLE);
         } else {
             displayName.setText("Tre-Hello, guest");
             toggleLogActions.setChecked(true);
             courierProfile.setVisibility(View.INVISIBLE);
+            courierAllTasks.setVisibility(View.INVISIBLE);
+            courierUserTasks.setVisibility(View.INVISIBLE);
         }
     }
 
     // Couriers
-
     public void onCourierTaskStream(View view) {
         Intent intent = new Intent(this, TaskStreamActivity.class);
+        startActivity(intent);
+    }
+
+    public void onCourierUserTasks(View view){
+        Intent intent = new Intent(this, UserTasksActivity.class);
+        intent.putExtra("userID", user.getUid());
         startActivity(intent);
     }
 

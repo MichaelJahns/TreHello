@@ -32,7 +32,9 @@ public class TaskLayoutAdapter extends RecyclerView.Adapter<TaskLayoutAdapter.Ta
             taskPeer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    onCourierSingleTask(view);
+                    //TODO: Create Activity for single Task view
+                    // Todo: on that view allow users to self assign tasks using their userID
+                    // Todo: Display Assigned status in a way that makes sense
                 }
             });
 
