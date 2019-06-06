@@ -6,7 +6,7 @@ My unique interpretation of a a trello board
 ##### Day Three
 * Adjusts where users can go
 * Adds user profiles, the ability to edit user profiles, and redirects for users who havent
-* Road Maps Next steps
+* Road Maps Single Task View, and User Tasks View
 * Adjusts timing and reloads for better user experience
 
 ##### Day Two
