@@ -3,6 +3,12 @@ My unique interpretation of a a trello board
 
 ### Log
 
+##### Day Three
+* Adjusts where users can go
+* Adds user profiles, the ability to edit user profiles, and redirects for users who havent
+* Road Maps Next steps
+* Adjusts timing and reloads for better user experience
+
 ##### Day Two
 * Adjust Styling
 * Reformats Task Form to better control inputs
