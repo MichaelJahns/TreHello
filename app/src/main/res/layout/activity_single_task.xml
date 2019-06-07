@@ -73,6 +73,7 @@
             android:id="@+id/toggleEditMode"
             android:layout_width="140dp"
             android:layout_height="75dp"
+            android:onClick="setUpTeamRecycler"
             android:text="EDIT" />
 
         <Button
