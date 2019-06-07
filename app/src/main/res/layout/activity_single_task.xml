@@ -86,7 +86,6 @@
             android:id="@+id/toggleEditMode"
             android:layout_width="140dp"
             android:layout_height="75dp"
-            android:onClick="onCourierElseWhere"
             android:text="EDIT" />
 
         <Button
@@ -96,12 +95,14 @@
             android:layout_weight="1"
             android:text="Log" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/assignSelf"
             android:layout_width="132dp"
             android:layout_height="75dp"
-            android:onClick="onAssignSelf"
-            android:text="Join Team" />
+            android:onClick="onToggleTeamActions"
+            android:text="Join Team"
+            android:textOff="JOIN TEAM"
+            android:textOn="LEAVE TEAM" />
 
     </LinearLayout>
 

@@ -3,7 +3,9 @@ package com.michaeljahns.tre_hello.tasks.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,7 @@ public class SingleTaskActivity extends AppCompatActivity {
     TextView taskDescription;
     TextView taskPhase;
     TextView taskTeam;
+    ToggleButton toggleTeamActions;
     FirebaseFirestore database;
     FirebaseUser user;
 
@@ -55,8 +58,13 @@ public class SingleTaskActivity extends AppCompatActivity {
         String taskID = getIntent().getStringExtra("taskID");
         getTask(taskID);
         getTeamDelay(300);
-        prepareViewDelay(300);
     }
+
+    public void updateUI(){
+        prepareView();
+        toggleTeamState();
+    }
+
 
     public void getTask(final String taskID) {
         database.collection("Tasks").document(taskID)
@@ -67,7 +75,7 @@ public class SingleTaskActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot snap = task.getResult();
                             currentTask = snap.toObject(Task.class).withID(snap.getId());
-                            prepareView();
+                            updateUI();
                         } else {
                             Log.d("Database", "Failure to get Task with ID " + taskID);
                         }
@@ -85,7 +93,7 @@ public class SingleTaskActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot snap = task.getResult();
                             currentTeam = snap.toObject(Team.class).withID(snap.getId());
-                            prepareViewDelay(300);
+                            updateUI();
                         } else {
                             Log.d("TEAMS", "Failure to get team");
                         }
@@ -111,15 +119,25 @@ public class SingleTaskActivity extends AppCompatActivity {
         taskName = findViewById(R.id.singleViewTaskName);
         taskDescription = findViewById(R.id.singleViewTaskDescription);
         taskPhase = findViewById(R.id.singleViewTaskPhase);
+        toggleTeamActions = findViewById(R.id.toggleLogActions);
 
         taskName.setText(currentTask.getTask());
         taskDescription.setText(currentTask.getDescription());
         taskPhase.setText(currentTask.getStatus());
+    }
 
+    public void onToggleTeamActions(View view) {
+        if (((ToggleButton) view).isChecked()) {
+            onAssignSelf(view);
+        } else {
+            String teamID = currentTeam.getTeamID();
+            leaveTeam(teamID);
+        }
+    }
 
+    private void toggleTeamState(){
         if (currentTeam != null) {
             taskTeam = findViewById(R.id.singleViewTaskTeam);
-//            taskTeam.setText(currentTeam.getTeamName());
             taskTeam.setText("Team:");
 
             recyclerView = findViewById(R.id.recyclerAssignedUsers);
@@ -128,17 +146,12 @@ public class SingleTaskActivity extends AppCompatActivity {
             List<String> recyclables = currentTeam.getMembersNames();
             adapter = new TeamLayoutAdapter(recyclables);
             recyclerView.setAdapter(adapter);
+            if (currentTeam.getMembersNames().contains(user.getDisplayName())) {
+                toggleTeamActions.setChecked(false);
+            } else {
+                toggleTeamActions.setChecked(true);
+            }
         }
-    }
-
-    public void prepareViewDelay(int delay) {
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        prepareView();
-                    }
-                },
-                delay);
     }
 
     // Events
@@ -158,20 +171,18 @@ public class SingleTaskActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
-                        getTeamDelay(300);
+                        getTeam();
+                        updateUI();
                         Log.d("TEAM", "Team Update completed");
                     }
                 });
     }
 
-    //TODO: public void leaveTeam(String teamID)
-    /*{
-    database.collection("Tasks").document(teamId)
-    .remove(SOMei thing ting)
+    //TODO:
+    public void leaveTeam(String teamID){
 
-    getTeamDelay(300);
-    Log.d("TEAM", user.getId() + "has left the team");
-    }*/
+        updateUI();
+    }
 
     public void newTeam() {
         Team newTeam = new Team();
