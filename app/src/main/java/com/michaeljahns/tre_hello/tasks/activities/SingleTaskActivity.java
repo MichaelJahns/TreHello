@@ -3,7 +3,6 @@ package com.michaeljahns.tre_hello.tasks.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -119,7 +118,7 @@ public class SingleTaskActivity extends AppCompatActivity {
         taskName = findViewById(R.id.singleViewTaskName);
         taskDescription = findViewById(R.id.singleViewTaskDescription);
         taskPhase = findViewById(R.id.singleViewTaskPhase);
-        toggleTeamActions = findViewById(R.id.toggleLogActions);
+        toggleTeamActions = findViewById(R.id.toggleTeamActions);
 
         taskName.setText(currentTask.getTask());
         taskDescription.setText(currentTask.getDescription());
@@ -143,13 +142,16 @@ public class SingleTaskActivity extends AppCompatActivity {
             recyclerView = findViewById(R.id.recyclerAssignedUsers);
             layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
-            List<String> recyclables = currentTeam.getMembersNames();
-            adapter = new TeamLayoutAdapter(recyclables);
+            List<String> recyclablesNames = currentTeam.getMembersNames();
+            List<String> recyclablesIDs = currentTeam.getMembersIDs();
+            adapter = new TeamLayoutAdapter(recyclablesNames, recyclablesIDs);
             recyclerView.setAdapter(adapter);
+
             if (currentTeam.getMembersNames().contains(user.getDisplayName())) {
-                toggleTeamActions.setChecked(false);
-            } else {
+                Log.d("TEAM", "I matter");
                 toggleTeamActions.setChecked(true);
+            } else {
+                toggleTeamActions.setChecked(false);
             }
         }
     }
@@ -180,6 +182,8 @@ public class SingleTaskActivity extends AppCompatActivity {
 
     //TODO:
     public void leaveTeam(String teamID){
+        database.collection("Team").document(teamID);
+//                .delete()
 
         updateUI();
     }

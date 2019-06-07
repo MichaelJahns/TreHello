@@ -96,7 +96,7 @@
             android:text="Log" />
 
         <ToggleButton
-            android:id="@+id/assignSelf"
+            android:id="@+id/toggleTeamActions"
             android:layout_width="132dp"
             android:layout_height="75dp"
             android:onClick="onToggleTeamActions"

@@ -4,21 +4,19 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @IgnoreExtraProperties
 public class Team {
     private String teamName;
-    private List<String> membersIDS;
+    private List<String> membersIDs;
     private List<String> membersNames;
 
     @Exclude
     private String teamID;
 
     public Team(){
-        membersIDS = new ArrayList<>();
+        membersIDs = new ArrayList<>();
         membersNames = new ArrayList<>();
     }
 
@@ -29,13 +27,13 @@ public class Team {
 
 
     public void addMember(String userID, String name){
-        membersIDS.add(userID);
+        membersIDs.add(userID);
         membersNames.add(name);
     }
 
     public void removeMember(String userID){
-        int index = membersIDS.indexOf(userID);
-        membersIDS.remove(index);
+        int index = membersIDs.indexOf(userID);
+        membersIDs.remove(index);
         membersNames.remove(index);
     }
 
@@ -48,8 +46,8 @@ public class Team {
     public List<String> getMembersNames()  {
         return this.membersNames;
     }
-    public List<String> getMembersIDS()  {
-        return this.membersIDS;
+    public List<String> getMembersIDs()  {
+        return this.membersIDs;
     }
 
     public void setTeamID(String teamID) {

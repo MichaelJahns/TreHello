@@ -10,4 +10,10 @@
         android:layout_height="wrap_content"
         android:text="memberName"
         android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/viewMemberID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 </LinearLayout>
