@@ -7,16 +7,63 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/courierForm"
+        android:id="@+id/courierAllTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         android:onClick="onCourierTaskStream"
-        android:text="Task"
+        android:text=" Task Feed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/toggleLogActions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="true"
+        android:onClick="onToggleLogActions"
+        android:textOff="Logout"
+        android:textOn="Login"
+        app:layout_constraintEnd_toEndOf="@+id/viewDisplayName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/viewDisplayName"
+        app:layout_constraintTop_toBottomOf="@+id/viewDisplayName" />
+
+    <TextView
+        android:id="@+id/viewDisplayName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="275dp"
+        android:text="TreHello User!"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/courierProfileEdit"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onCourierProfile"
+        android:text="Profile"
+        app:layout_constraintEnd_toEndOf="@+id/courierUserTasks"
+        app:layout_constraintStart_toStartOf="@+id/courierUserTasks"
+        app:layout_constraintTop_toBottomOf="@+id/courierUserTasks" />
+
+    <Button
+        android:id="@+id/courierUserTasks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="onCourierUserTasks"
+        android:text="My Tasks"
+        app:layout_constraintEnd_toEndOf="@+id/toggleLogActions"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/toggleLogActions"
+        app:layout_constraintTop_toBottomOf="@+id/toggleLogActions" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

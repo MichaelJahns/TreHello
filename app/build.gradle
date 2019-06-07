@@ -28,6 +28,11 @@ dependencies {
     //Fire Base
     implementation 'com.google.firebase:firebase-firestore:19.0.1'
     implementation 'com.google.firebase:firebase-core:16.0.9'
+    //Fire Base Auth
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.firebaseui:firebase-ui-database:4.0.0'
+
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

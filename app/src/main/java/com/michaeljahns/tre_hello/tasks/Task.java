@@ -1,9 +1,12 @@
-package com.michaeljahns.tre_hello;
+package com.michaeljahns.tre_hello.tasks;
+
+import java.util.HashSet;
 
 public class Task {
     private String task;
     private String description;
     private String status;
+    private HashSet<String> assigned;
 
     public Task(){
 
@@ -12,7 +15,7 @@ public class Task {
     public Task(String task, String description, String status){
         this.task = task;
         this.description = description;
-        this.status = status;
+        this.status = "New";
     }
 
 

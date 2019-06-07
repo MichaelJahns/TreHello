@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Tre-Hello!</string>
+    <string-array name="phases">
+        <item>Idea</item>
+        <item>Research</item>
+        <item>Begun</item>
+        <item>Blocked</item>
+        <item>Review</item>
+        <item>Completed</item>
+    </string-array>
+
+    <string-array name="profileSigns">
+        <item>Aquarius</item>
+        <item>Yield</item>
+        <item>Capricorn</item>
+        <item>Dues Ex Machina</item>
+        <item>Cancer (crab)</item>
+        <item>Cancer (Unregulated Cell Growth)</item>
+        <item>Stop</item>
+        <item>Leo</item>
+        <item>Baby On Board</item>
+    </string-array>
 </resources>

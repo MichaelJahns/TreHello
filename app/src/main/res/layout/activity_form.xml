@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormActivity">
+    tools:context=".tasks.activities.FormActivity">
 
     <EditText
         android:id="@+id/newTaskName"
@@ -29,25 +29,25 @@
         app:layout_constraintStart_toStartOf="@+id/newTaskName"
         app:layout_constraintTop_toBottomOf="@+id/newTaskName" />
 
-    <EditText
-        android:id="@+id/newTaskStatus"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="Task Status"
-        app:layout_constraintEnd_toEndOf="@+id/newTaskDescription"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/newTaskDescription"
-        app:layout_constraintTop_toBottomOf="@+id/newTaskDescription" />
-
     <Button
         android:id="@+id/submitNewTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:onClick="onTaskSubmission"
         android:text="New Task"
-        app:layout_constraintEnd_toEndOf="@+id/newTaskStatus"
-        app:layout_constraintStart_toStartOf="@+id/newTaskStatus"
-        app:layout_constraintTop_toBottomOf="@+id/newTaskStatus" />
+        app:layout_constraintEnd_toEndOf="@+id/newTaskPhase"
+        app:layout_constraintStart_toStartOf="@+id/newTaskPhase"
+        app:layout_constraintTop_toBottomOf="@+id/newTaskPhase" />
+
+    <Spinner
+        android:id="@+id/newTaskPhase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="@+id/newTaskDescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/newTaskDescription"
+        app:layout_constraintTop_toBottomOf="@+id/newTaskDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
