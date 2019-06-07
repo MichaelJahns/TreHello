@@ -1,14 +1,14 @@
 package com.michaeljahns.tre_hello.tasks.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -17,7 +17,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.michaeljahns.tre_hello.R;
 import com.michaeljahns.tre_hello.tasks.Task;
 import com.michaeljahns.tre_hello.tasks.TaskLayoutAdapter;
-import com.michaeljahns.tre_hello.tasks.activities.FormActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,25 +50,24 @@ public class TaskStreamActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull com.google.android.gms.tasks.Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            QuerySnapshot snap = task.getResult();
+                        if (task.isSuccessful()) {
+                            QuerySnapshot snaps = task.getResult();
 
-                            for(DocumentSnapshot doc : snap.getDocuments()){
-                                Task taskObject = doc.toObject(Task.class);
+                            for (DocumentSnapshot snap : snaps.getDocuments()) {
+                                Task taskObject = snap.toObject(Task.class).withID(snap.getId());
                                 tasks.add(taskObject);
                             }
                             adapter.setTasks(tasks);
                         } else {
-                            Log.d("MASSIVE FAILURE:", "There was a slight error");
+                            Log.d("Database", "Failure to get Collection");
                         }
                     }
                 });
         return tasks;
     }
 
-    public void onCourierForm(View view){
+    public void onCourierForm(View view) {
         Intent intent = new Intent(this, FormActivity.class);
         startActivity(intent);
     }
-
 }

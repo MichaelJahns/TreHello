@@ -1,12 +1,19 @@
 package com.michaeljahns.tre_hello.tasks;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.HashSet;
 
+@IgnoreExtraProperties
 public class Task {
     private String task;
     private String description;
     private String status;
-    private HashSet<String> assigned;
+    private String teamReference;
+    @Exclude
+    private String taskID;
+
 
     public Task(){
 
@@ -16,8 +23,13 @@ public class Task {
         this.task = task;
         this.description = description;
         this.status = "New";
+        this.teamReference = null;
     }
 
+    public Task withID(String id){
+        this.taskID = id;
+        return this;
+    }
 
     public String getTask() {
         return task;
@@ -41,6 +53,22 @@ public class Task {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public String getTeamReference() {
+        return teamReference;
+    }
+
+    public boolean hasTeamReference(){
+        if(this.teamReference != null){
+            return true;
+        }
+        return false;
     }
 
 
