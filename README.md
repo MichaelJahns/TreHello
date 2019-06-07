@@ -3,6 +3,12 @@ My unique interpretation of a a trello board
 
 ### Log
 
+##### Day Four
+* Adjusts the task view page to allow the creation, and joinging of teams, Teams are a POJO object that has a top level reference in NOSQL
+* Removes TaskView and plans to integrate that into the profile Viewer
+* When a user clicks on a user in the team recycler they are taken to that users profile page
+* Repairs broken editProfileRoute
+
 ##### Day Three
 * Adjusts where users can go
 * Adds user profiles, the ability to edit user profiles, and redirects for users who havent
