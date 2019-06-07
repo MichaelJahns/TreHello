@@ -22,7 +22,6 @@ public class Task {
         this.task = task;
         this.description = description;
         this.status = "New";
-        this.teamReference = null;
     }
 
     public Task withID(String id){

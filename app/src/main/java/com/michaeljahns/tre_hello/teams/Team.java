@@ -3,20 +3,23 @@ package com.michaeljahns.tre_hello.teams;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @IgnoreExtraProperties
 public class Team {
-
-    // I am really starting to think we would be better served by ArrayLists
     private String teamName;
-    private Map<String, String> members;
+    private List<String> membersIDS;
+    private List<String> membersNames;
+
     @Exclude
     private String teamID;
 
     public Team(){
-        members = new HashMap<>();
+        membersIDS = new ArrayList<>();
+        membersNames = new ArrayList<>();
     }
 
     public Team withID(String id){
@@ -24,30 +27,34 @@ public class Team {
         return this;
     }
 
-    public Map<String, String> getMembers() {
-        return members;
-    }
 
     public void addMember(String userID, String name){
-        members.put(userID, name);
+        membersIDS.add(userID);
+        membersNames.add(name);
     }
 
     public void removeMember(String userID){
-        members.remove(userID);
+        int index = membersIDS.indexOf(userID);
+        membersIDS.remove(index);
+        membersNames.remove(index);
     }
 
     public String getTeamID() {
         return teamID;
     }
+    public String getTeamName() {
+        return teamName;
+    }
+    public List<String> getMembersNames()  {
+        return this.membersNames;
+    }
+    public List<String> getMembersIDS()  {
+        return this.membersIDS;
+    }
 
     public void setTeamID(String teamID) {
         this.teamID = teamID;
     }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }

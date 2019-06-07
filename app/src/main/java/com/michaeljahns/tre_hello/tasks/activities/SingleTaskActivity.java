@@ -17,26 +17,26 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.michaeljahns.tre_hello.R;
 import com.michaeljahns.tre_hello.tasks.Task;
 import com.michaeljahns.tre_hello.teams.Team;
 import com.michaeljahns.tre_hello.teams.TeamLayoutAdapter;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 public class SingleTaskActivity extends AppCompatActivity {
     Task currentTask;
+    Team currentTeam;
 
     TextView taskName;
     TextView taskDescription;
     TextView taskPhase;
+    TextView taskTeam;
     FirebaseFirestore database;
     FirebaseUser user;
 
-    List<String> members;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     TeamLayoutAdapter adapter;
@@ -45,25 +45,17 @@ public class SingleTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_task);
-
         setUP();
-
-        String taskID = getIntent().getStringExtra("taskID");
-        getTask(taskID);
-
-        try{
-//            setUpTeamRecycler();
-        } catch (NullPointerException exception){
-            Log.d("TEAM", "teamReference was Null", exception);
-        }
     }
 
     public void setUP() {
-        database = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        taskName = findViewById(R.id.singleViewTaskName);
-        taskDescription = findViewById(R.id.singleViewTaskDescription);
-        taskPhase = findViewById(R.id.singleViewTaskPhase);
+        database = FirebaseFirestore.getInstance();
+
+        String taskID = getIntent().getStringExtra("taskID");
+        getTask(taskID);
+        getTeamDelay(300);
+        prepareViewDelay(300);
     }
 
     public void getTask(final String taskID) {
@@ -75,7 +67,7 @@ public class SingleTaskActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot snap = task.getResult();
                             currentTask = snap.toObject(Task.class).withID(snap.getId());
-                            fillPage();
+                            prepareView();
                         } else {
                             Log.d("Database", "Failure to get Task with ID " + taskID);
                         }
@@ -83,23 +75,7 @@ public class SingleTaskActivity extends AppCompatActivity {
                 });
     }
 
-    public void fillPage() {
-        taskName.setText(currentTask.getTask());
-        taskDescription.setText(currentTask.getDescription());
-        taskPhase.setText(currentTask.getStatus());
-    }
-
-    public void setUpTeamRecycler(View view) {
-        getTeamForRecycler();
-        recyclerView = findViewById(R.id.recyclerAssignedUsers);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new TeamLayoutAdapter(members);
-        recyclerView.setAdapter(adapter);
-        Log.d("TEST", "I MADE IT");
-    }
-
-    public void getTeamForRecycler() {
+    public void getTeam() {
         String teamID = currentTask.getTeamReference();
         database.collection("Teams").document(teamID)
                 .get()
@@ -108,8 +84,8 @@ public class SingleTaskActivity extends AppCompatActivity {
                     public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot snap = task.getResult();
-                            Team team = snap.toObject(Team.class).withID(snap.getId());
-                            fillMembersList(team);
+                            currentTeam = snap.toObject(Team.class).withID(snap.getId());
+                            prepareViewDelay(300);
                         } else {
                             Log.d("TEAMS", "Failure to get team");
                         }
@@ -117,46 +93,85 @@ public class SingleTaskActivity extends AppCompatActivity {
                 });
     }
 
-    public void fillMembersList(Team team) {
-        Map<String, String> map = team.getMembers();
-        Collection<String> col = map.values();
-        for (String value : col) {
-            members.add(value);
+    public void getTeamDelay(int delay) {
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        try {
+                            getTeam();
+                        } catch (NullPointerException exception) {
+                            Log.d("TEAM", "This Task does not have a team");
+                        }
+                    }
+                },
+                delay);
+    }
+
+    public void prepareView() {
+        taskName = findViewById(R.id.singleViewTaskName);
+        taskDescription = findViewById(R.id.singleViewTaskDescription);
+        taskPhase = findViewById(R.id.singleViewTaskPhase);
+
+        taskName.setText(currentTask.getTask());
+        taskDescription.setText(currentTask.getDescription());
+        taskPhase.setText(currentTask.getStatus());
+
+
+        if (currentTeam != null) {
+            taskTeam = findViewById(R.id.singleViewTaskTeam);
+//            taskTeam.setText(currentTeam.getTeamName());
+            taskTeam.setText("Team:");
+
+            recyclerView = findViewById(R.id.recyclerAssignedUsers);
+            layoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(layoutManager);
+            List<String> recyclables = currentTeam.getMembersNames();
+            adapter = new TeamLayoutAdapter(recyclables);
+            recyclerView.setAdapter(adapter);
         }
+    }
+
+    public void prepareViewDelay(int delay) {
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        prepareView();
+                    }
+                },
+                delay);
     }
 
     // Events
     public void onAssignSelf(View view) {
         String teamID = currentTask.getTeamReference();
         if (teamID != null) {
-            getTeamToJoin(teamID);
+            joinTeam(teamID);
         } else {
             newTeam();
         }
     }
 
-    public void getTeamToJoin(final String teamID) {
-        database.collection("Tasks").document(teamID)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+    public void joinTeam(String teamID) {
+        DocumentReference reference = database.collection("Teams").document(teamID);
+        reference.update("membersIDs", FieldValue.arrayUnion(user.getUid()));
+        reference.update("membersNames", FieldValue.arrayUnion(user.getDisplayName()))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot snap = task.getResult();
-                            Team team = snap.toObject(Team.class).withID(snap.getId());
-                            //TODO: This super witty withID made me push task IDs onto their own document. which is dumb. Why isnt the exclude annotation working?
-                            joinTeam(team);
-                        } else {
-                            Log.d("TEAM", "Failed to get Team: " + teamID);
-                        }
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
+                        getTeamDelay(300);
+                        Log.d("TEAM", "Team Update completed");
                     }
                 });
     }
 
-    public void joinTeam(Team team) {
-        team.addMember(user.getUid(), user.getDisplayName());
-        database.collection("Teams").document(team.getTeamID()).set(team);
-    }
+    //TODO: public void leaveTeam(String teamID)
+    /*{
+    database.collection("Tasks").document(teamId)
+    .remove(SOMei thing ting)
+
+    getTeamDelay(300);
+    Log.d("TEAM", user.getId() + "has left the team");
+    }*/
 
     public void newTeam() {
         Team newTeam = new Team();
@@ -189,6 +204,7 @@ public class SingleTaskActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("TASK", "team Reference appended to Task");
+                        getTeamDelay(300);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -198,14 +214,4 @@ public class SingleTaskActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    public void onCourierElseWhere(View vew){
-        Task test = currentTask;
-
-        System.out.println(test);
-        String tester = currentTask.getTeamReference();
-        System.out.println(tester);
-    }
-
-
 }
