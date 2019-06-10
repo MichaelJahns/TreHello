@@ -3,6 +3,10 @@ My unique interpretation of a a trello board
 
 ### Log
 
+##### Day Five
+* Device Id is now being saved to a user account preferences on every save
+* Members with their device ID set can now recieve background notifications
+
 ##### Day Four
 * Adjusts the task view page to allow the creation, and joinging of teams, Teams are a POJO object that has a top level reference in NOSQL
 * Removes TaskView and plans to integrate that into the profile Viewer
