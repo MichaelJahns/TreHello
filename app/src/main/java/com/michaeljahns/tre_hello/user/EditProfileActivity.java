@@ -16,15 +16,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.michaeljahns.tre_hello.R;
 
 import java.util.HashMap;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    private static final String TAG = "PROFILE";
     EditText profileName;
     EditText profileBio;
     Spinner profileSign;
+    String deviceID;
     ArrayAdapter<String> signAdapter;
 
     FirebaseUser user;
@@ -39,6 +43,7 @@ public class EditProfileActivity extends AppCompatActivity {
         if (user != null) {
             userID = user.getUid();
             getUserInformation();
+            getUserToken();
         }
     }
 
@@ -92,7 +97,32 @@ public class EditProfileActivity extends AppCompatActivity {
         profileData.put("Preferred Name", profileName.getText().toString());
         profileData.put("Biography", profileBio.getText().toString());
         profileData.put("Sign", profileSign.getSelectedItem().toString());
+        //TODO: There is alot to think about in storing multiple device ids. Should I store everyone
+        // I have ever encountered in an array, even if they are all of the same device with multiple resets on ID.
+        // Should I store the most recently seen and potentially ignore secondary devices?
+        profileData.put("DeviceID", deviceID);
         database.collection("Profiles").document(userID).set(profileData);
         this.finish();
+    }
+
+    public void getUserToken(){
+        FirebaseInstanceId instanceID = FirebaseInstanceId.getInstance();
+
+        instanceID
+                .getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if(!task.isSuccessful()){
+                            Log.w(TAG, "Unable to get the ID!");
+                            return;
+                        }
+                        String token = task.getResult().getToken();
+                        deviceID = token;
+
+                        Log.d(TAG, token);
+
+                    }
+                });
     }
 }

@@ -27,6 +27,8 @@ public class TaskStreamActivity extends AppCompatActivity {
     TaskLayoutAdapter adapter;
     FirebaseFirestore db;
 
+    //TODO: Filter tasks by status
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

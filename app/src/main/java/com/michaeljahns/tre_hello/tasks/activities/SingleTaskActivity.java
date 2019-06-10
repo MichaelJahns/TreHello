@@ -50,6 +50,8 @@ public class SingleTaskActivity extends AppCompatActivity {
         setUP();
     }
 
+    //TODO: Update task
+
     public void setUP() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseFirestore.getInstance();
@@ -179,8 +181,6 @@ public class SingleTaskActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    //TODO:
     public void leaveTeam(String teamID){
         database.collection("Team").document(teamID);
 //                .delete()
