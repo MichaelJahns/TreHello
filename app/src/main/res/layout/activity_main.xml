@@ -47,22 +47,11 @@
         android:id="@+id/courierProfileEdit"
         android:layout_width="0dp"
         android:layout_height="47dp"
-        android:layout_marginTop="8dp"
-        android:onClick="onCourierProfile"
+        android:layout_marginStart="8dp"
+        android:onClick="onCourierEditProfile"
         android:text="Profile"
-        app:layout_constraintEnd_toEndOf="@+id/courierUserTasks"
-        app:layout_constraintStart_toStartOf="@+id/courierUserTasks"
-        app:layout_constraintTop_toBottomOf="@+id/courierUserTasks" />
-
-    <Button
-        android:id="@+id/courierUserTasks"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:onClick="onCourierUserTasks"
-        android:text="My Tasks"
         app:layout_constraintEnd_toEndOf="@+id/toggleLogActions"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/toggleLogActions"
         app:layout_constraintTop_toBottomOf="@+id/toggleLogActions" />
 

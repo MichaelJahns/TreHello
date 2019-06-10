@@ -22,8 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.michaeljahns.tre_hello.tasks.activities.TaskStreamActivity;
-import com.michaeljahns.tre_hello.user.UserProfileActivity;
-import com.michaeljahns.tre_hello.user.UserTasksActivity;
+import com.michaeljahns.tre_hello.user.EditProfileActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private ToggleButton toggleLogActions;
     private Button courierLog;
     private Button courierProfile;
-    private Button courierUserTasks;
     private Button courierAllTasks;
 
     private TextView displayName;
@@ -76,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         toggleLogActions = findViewById(R.id.toggleLogActions);
         courierLog = findViewById(R.id.toggleLogActions);
         courierProfile = findViewById(R.id.courierProfileEdit);
-        courierUserTasks = findViewById(R.id.courierUserTasks);
         courierAllTasks = findViewById(R.id.courierAllTasks);
 
         displayName = findViewById(R.id.viewDisplayName);
@@ -114,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                                 //User has profile Information
                             }else{
                                 //User has no profile information
-                                onCourierProfile(courierProfile.getRootView());
+                                onCourierEditProfile(courierProfile.getRootView());
                             }
                         }else{
                             // Error retrieving user information
@@ -152,13 +149,11 @@ public class MainActivity extends AppCompatActivity {
             toggleLogActions.setChecked(false);
             courierProfile.setVisibility(View.VISIBLE);
             courierAllTasks.setVisibility(View.VISIBLE);
-            courierUserTasks.setVisibility(View.VISIBLE);
         } else {
             displayName.setText("Tre-Hello, guest");
             toggleLogActions.setChecked(true);
             courierProfile.setVisibility(View.INVISIBLE);
             courierAllTasks.setVisibility(View.INVISIBLE);
-            courierUserTasks.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -168,14 +163,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onCourierUserTasks(View view){
-        Intent intent = new Intent(this, UserTasksActivity.class);
-        intent.putExtra("userID", user.getUid());
-        startActivity(intent);
-    }
-
-    public void onCourierProfile(View view){
-        Intent intent = new Intent(this, UserProfileActivity.class);
+    public void onCourierEditProfile(View view){
+        Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
 }

@@ -5,33 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".user.voiasd">
+    tools:context=".user.EditProfileActivity">
 
     <TextView
         android:id="@+id/labelPreferedName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="Username"
-        android:textSize="24sp" />
+        android:text="What is your prefered name?" />
 
-    <TextView
+    <EditText
         android:id="@+id/editPreferredName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="prefered name"
-        android:textSize="18sp" />
+        android:hint="prefered name" />
 
     <TextView
         android:id="@+id/labelBiography"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="Biography"
-        android:textSize="24sp" />
+        android:text="About me" />
 
-    <TextView
+    <EditText
         android:id="@+id/editBiography"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,28 +38,19 @@
         android:id="@+id/labelProfileSign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="Sign"
-        android:textSize="24sp" />
+        android:text="What is your Sign?" />
 
-    <TextView
+    <Spinner
         android:id="@+id/editSignSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
-        android:textSize="18sp" />
+        android:spinnerMode="dialog" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/profileTasksPlaceholder"
+    <Button
+        android:id="@+id/submitProfile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!--<Button-->
-        <!--android:id="@+id/submitProfile"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:onClick="onSubmitProfile"-->
-        <!--android:text="Update Profile" />-->
-
+        android:layout_height="wrap_content"
+        android:onClick="onSubmitProfile"
+        android:text="Update Profile" />
 
 </LinearLayout>

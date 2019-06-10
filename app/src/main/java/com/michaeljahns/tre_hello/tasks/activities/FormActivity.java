@@ -27,7 +27,7 @@ public class FormActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form);
+        setContentView(R.layout.activity_create_task);
 
         taskName = findViewById(R.id.newTaskName);
         taskDescription = findViewById(R.id.newTaskDescription);
