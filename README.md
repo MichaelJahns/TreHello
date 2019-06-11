@@ -8,6 +8,7 @@ My unique interpretation of a a trello board
 * Wrote and Wired an UpdateTaskActivity
 ##### References
 [cloud functions ref](https://github.com/firebase/functions-samples)
+
 [getAllDocumentsByID](https://stackoverflow.com/questions/46721517/google-firestore-how-to-get-document-by-multiple-ids-in-one-round-trip)
 
 #### Day Five
@@ -25,6 +26,7 @@ My unique interpretation of a a trello board
 * Adds user profiles, the ability to edit user profiles, and redirects for users who havent
 * Road Maps Single Task View, and User Tasks View
 * Adjusts timing and reloads for better user experience
+##### References
 [Auth Listener](https://stackoverflow.com/questions/42571618/how-to-make-a-user-sign-out-in-firebase)
 
 #### Day Two
