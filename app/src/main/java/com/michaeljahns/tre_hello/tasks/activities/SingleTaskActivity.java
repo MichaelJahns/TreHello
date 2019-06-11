@@ -1,5 +1,6 @@
 package com.michaeljahns.tre_hello.tasks.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -56,18 +57,18 @@ public class SingleTaskActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseFirestore.getInstance();
 
-        String taskID = getIntent().getStringExtra("taskID");
-        getTask(taskID);
+        getTask();
         getTeamDelay(300);
     }
 
-    public void updateUI(){
+    public void updateUI() {
         prepareView();
         toggleTeamState();
     }
 
 
-    public void getTask(final String taskID) {
+    public void getTask() {
+        final String taskID = getIntent().getStringExtra("taskID");
         database.collection("Tasks").document(taskID)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -136,7 +137,7 @@ public class SingleTaskActivity extends AppCompatActivity {
         }
     }
 
-    private void toggleTeamState(){
+    private void toggleTeamState() {
         if (currentTeam != null) {
             taskTeam = findViewById(R.id.singleViewTaskTeam);
             taskTeam.setText("Team:");
@@ -181,7 +182,8 @@ public class SingleTaskActivity extends AppCompatActivity {
                     }
                 });
     }
-    public void leaveTeam(String teamID){
+
+    public void leaveTeam(String teamID) {
         database.collection("Team").document(teamID);
 //                .delete()
 
@@ -228,5 +230,11 @@ public class SingleTaskActivity extends AppCompatActivity {
                         Log.d("TASK", "Failure to update task");
                     }
                 });
+    }
+
+    public void onCourierEditTask(View view) {
+        Intent intent = new Intent(this, EditTaskActivity.class);
+        intent.putExtra("taskID", currentTask.getTaskID());
+        startActivity(intent);
     }
 }

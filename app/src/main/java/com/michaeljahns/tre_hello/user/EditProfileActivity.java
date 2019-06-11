@@ -100,7 +100,7 @@ public class EditProfileActivity extends AppCompatActivity {
         //TODO: There is alot to think about in storing multiple device ids. Should I store everyone
         // I have ever encountered in an array, even if they are all of the same device with multiple resets on ID.
         // Should I store the most recently seen and potentially ignore secondary devices?
-        profileData.put("DeviceID", deviceID);
+        profileData.put("deviceID", deviceID);
         database.collection("Profiles").document(userID).set(profileData);
         this.finish();
     }

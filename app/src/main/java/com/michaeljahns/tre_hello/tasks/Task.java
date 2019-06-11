@@ -38,6 +38,7 @@ public class Task {
     public String getStatus() {
         return status;
     }
+    @Exclude
     public String getTaskID() {
         return taskID;
     }
