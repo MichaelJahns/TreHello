@@ -110,6 +110,7 @@ public class EditTaskActivity extends AppCompatActivity {
                 Log.d(TAG, "Error updating document", e);
             }
         });
-        this.finish();
+        Intent intent = new Intent(this, TaskStreamActivity.class);
+        startActivity(intent);
     }
 }
