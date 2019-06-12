@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    tools:context=".user.EditProfileActivity">
 
     <LinearLayout
         android:id="@+id/focusPrefferedName"
@@ -18,17 +18,18 @@
             android:id="@+id/labelPreferedName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/viewPreferredName"
-            android:text="@string/username"
-            android:textSize="24sp" />
+            android:text="@string/what_is_your_prefered_name" />
 
-        <TextView
+        <EditText
             android:id="@+id/viewPreferredName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/preferred_name"
-            android:textSize="18sp" />
+            android:importantForAutofill="no"
+            android:inputType="text"
+            tools:targetApi="o" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -42,16 +43,17 @@
             android:id="@+id/labelBiography"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/viewBiography"
-            android:text="@string/biography"
-            android:textSize="24sp" />
+            android:text="@string/about_me" />
 
-        <TextView
+        <EditText
             android:id="@+id/viewBiography"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/biography" />
+            android:hint="@string/biography"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            tools:targetApi="o" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,30 +66,20 @@
             android:id="@+id/labelProfileSign"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/viewSignSpinner"
-            android:text="@string/sign"
-            android:textSize="24sp" />
+            android:text="@string/what_is_your_sign" />
 
-        <TextView
+        <Spinner
             android:id="@+id/viewSignSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:textSize="18sp" />
-
+            android:spinnerMode="dialog" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/profileTasksPlaceholder"
+    <Button
+        android:id="@+id/submitProfile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!--<Button-->
-        <!--android:id="@+id/submitProfile"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:onClick="onSubmitProfile"-->
-        <!--android:text="Update Profile" />-->
-
+        android:layout_height="wrap_content"
+        android:onClick="onSubmitProfile"
+        android:text="@string/update_profile" />
 
 </LinearLayout>

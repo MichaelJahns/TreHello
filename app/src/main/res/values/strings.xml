@@ -1,5 +1,36 @@
 <resources>
     <string name="app_name">Tre-Hello!</string>
+    <string name="about_me">About me</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="what_is_your_prefered_name">What is your prefered name?</string>
+    <string name="what_is_your_sign">What is your Sign?</string>
+    <string name="delete_wip">Delete (WIP)</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="update_task_description">Update Task Description</string>
+    <string name="profile">Profile</string>
+    <string name="trehello_user">TreHello User!</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="task_feed">Task Feed</string>
+    <string name="singletaskteam">singleTaskTeam</string>
+    <string name="singletaskdescription">singleTaskDescription</string>
+    <string name="singtaskphase">singTaskPhase</string>
+    <string name="join_team">Join Team</string>
+    <string name="log_wip">Log (WIP)</string>
+    <string name="edit">EDIT</string>
+    <string name="leave_team">LEAVE TEAM</string>
+    <string name="singletaskname">singleTaskName</string>
+    <string name="new_task">New Task</string>
+    <string name="preferred_name">preferred name</string>
+    <string name="username">Username</string>
+    <string name="biography">biography</string>
+    <string name="sign">Sign</string>
+    <string name="task_name">Task Name</string>
+    <string name="task_description">Task Description</string>
+    <string name="task_status">Task Status</string>
+    <string name="task_id">Task ID</string>
+    <string name="view_task">View Task</string>
+    <string name="membername">memberName</string>
     <string-array name="phases">
         <item>Idea</item>
         <item>Research</item>

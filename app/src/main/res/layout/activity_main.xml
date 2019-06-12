@@ -13,7 +13,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:onClick="onCourierTaskStream"
-        android:text=" Task Feed"
+        android:text="@string/task_feed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,8 +24,8 @@
         android:layout_marginTop="8dp"
         android:checked="true"
         android:onClick="onToggleLogActions"
-        android:textOff="Logout"
-        android:textOn="Login"
+        android:textOff="@string/logout"
+        android:textOn="@string/login"
         app:layout_constraintEnd_toEndOf="@+id/viewDisplayName"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/viewDisplayName"
@@ -38,7 +38,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="275dp"
-        android:text="TreHello User!"
+        android:text="@string/trehello_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,22 +47,11 @@
         android:id="@+id/courierProfileEdit"
         android:layout_width="0dp"
         android:layout_height="47dp"
-        android:layout_marginTop="8dp"
-        android:onClick="onCourierProfile"
-        android:text="Profile"
-        app:layout_constraintEnd_toEndOf="@+id/courierUserTasks"
-        app:layout_constraintStart_toStartOf="@+id/courierUserTasks"
-        app:layout_constraintTop_toBottomOf="@+id/courierUserTasks" />
-
-    <Button
-        android:id="@+id/courierUserTasks"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:onClick="onCourierUserTasks"
-        android:text="My Tasks"
+        android:layout_marginStart="8dp"
+        android:onClick="onCourierEditProfile"
+        android:text="@string/profile"
         app:layout_constraintEnd_toEndOf="@+id/toggleLogActions"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/toggleLogActions"
         app:layout_constraintTop_toBottomOf="@+id/toggleLogActions" />
 
