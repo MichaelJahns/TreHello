@@ -42,9 +42,9 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     public void prepareView(DocumentSnapshot doc) {
-        profileName = findViewById(R.id.editPreferredName);
-        profileBio = findViewById(R.id.editBiography);
-        profileSign = findViewById(R.id.editSignSpinner);
+        profileName = findViewById(R.id.viewPreferredName);
+        profileBio = findViewById(R.id.viewBiography);
+        profileSign = findViewById(R.id.viewSignSpinner);
 
         profileName.setText(doc.get("Preferred Name").toString());
         profileBio.setText(doc.get("Biography").toString());

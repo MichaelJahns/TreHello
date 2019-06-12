@@ -16,17 +16,17 @@
             android:id="@+id/singleViewTaskName"
             android:layout_width="216dp"
             android:layout_height="match_parent"
-            android:text="singleTaskName"
+            android:text="@string/singletaskname"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="81dp" />
 
         <TextView
             android:id="@+id/singleViewTaskPhase"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="singTaskPhase"
+            android:text="@string/singtaskphase"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -34,11 +34,11 @@
 
     <TextView
         android:id="@+id/singleViewTaskDescription"
-        android:layout_width="398dp"
+        android:layout_width="match_parent"
         android:layout_height="134dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="singleTaskDescription"
+        android:text="@string/singletaskdescription"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,7 +62,7 @@
                 android:id="@+id/singleViewTaskTeam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="singleTaskTeam"
+                android:text="@string/singletaskteam"
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
@@ -87,23 +87,23 @@
             android:layout_width="140dp"
             android:layout_height="75dp"
             android:onClick="onCourierEditTask"
-            android:text="EDIT" />
+            android:text="@string/edit" />
 
         <Button
             android:id="@+id/courierNewLog"
-            android:layout_width="46dp"
+            android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:text="Log (WIP)" />
+            android:text="@string/log_wip" />
 
         <ToggleButton
             android:id="@+id/toggleTeamActions"
             android:layout_width="132dp"
             android:layout_height="75dp"
             android:onClick="onToggleTeamActions"
-            android:text="Join Team"
-            android:textOff="JOIN TEAM"
-            android:textOn="LEAVE TEAM" />
+            android:text="@string/join_team"
+            android:textOff="@string/join_team"
+            android:textOn="@string/leave_team" />
 
     </LinearLayout>
 

@@ -50,9 +50,9 @@ public class EditProfileActivity extends AppCompatActivity {
     public void setUP() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseFirestore.getInstance();
-        profileName = (EditText) findViewById(R.id.editPreferredName);
-        profileBio = findViewById(R.id.editBiography);
-        profileSign = findViewById(R.id.editSignSpinner);
+        profileName = (EditText) findViewById(R.id.viewPreferredName);
+        profileBio = findViewById(R.id.viewBiography);
+        profileSign = findViewById(R.id.viewSignSpinner);
         signAdapter = initializeSpinner();
         profileSign.setAdapter(signAdapter);
     }

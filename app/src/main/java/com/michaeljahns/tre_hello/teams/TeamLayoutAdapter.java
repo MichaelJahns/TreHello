@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.michaeljahns.tre_hello.R;
-import com.michaeljahns.tre_hello.tasks.Task;
-import com.michaeljahns.tre_hello.tasks.activities.SingleTaskActivity;
 import com.michaeljahns.tre_hello.user.UserProfileActivity;
 
 import java.util.List;
