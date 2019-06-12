@@ -3,6 +3,13 @@ My unique interpretation of a a trello board
 
 ## Log
 
+#### Day Seven
+* Cleaned Strings
+* Added hints and labelFors
+* Added layouts and focusables
+* Adjust some layouts
+* Added button bar to one page
+
 #### Day Six
 * Wrote a cloud function to alert members to changes
 * Wrote and Wired an UpdateTaskActivity
