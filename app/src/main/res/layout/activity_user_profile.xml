@@ -5,53 +5,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".user.UserProfileActivity">
+    >
 
-    <TextView
-        android:id="@+id/labelPreferedName"
+    <LinearLayout
+        android:id="@+id/focusPrefferedName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="What is your prefered name?" />
+        android:focusable="auto"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/profilePreferredName"
+        <TextView
+            android:id="@+id/labelPreferedName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/viewPreferredName"
+            android:text="@string/username"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/viewPreferredName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/preferred_name"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/focusBiography"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="prefered name" />
+        android:focusable="auto"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/labelBiography"
+        <TextView
+            android:id="@+id/labelBiography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/viewBiography"
+            android:text="@string/biography"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/viewBiography"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:ems="10"
+            android:hint="@string/biography" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/focusSign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="About me" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/profileBiography"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="biography"
-        android:inputType="textMultiLine" />
+        <TextView
+            android:id="@+id/labelProfileSign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/viewSignSpinner"
+            android:text="@string/sign"
+            android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/labelProfileSign"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="What is your Sign?" />
+        <TextView
+            android:id="@+id/viewSignSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:textSize="18sp" />
 
-    <Spinner
-        android:id="@+id/profileSignSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dialog" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/submitProfile"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profileTasksPlaceholder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onSubmitProfile"
-        android:text="Update Profile" />
+        android:layout_height="match_parent" />
+
+    <!--<Button-->
+        <!--android:id="@+id/submitProfile"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="onSubmitProfile"-->
+        <!--android:text="Update Profile" />-->
 
 
 </LinearLayout>

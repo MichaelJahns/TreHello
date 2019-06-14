@@ -9,41 +9,102 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/singleViewTaskName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="singleTaskName"
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:text="@string/singletaskname"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="81dp" />
 
-        <Spinner
-            android:id="@+id/singleSpinnerPhase"
-            android:layout_width="228dp"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="175dp"
-            tools:layout_editor_absoluteY="75dp" />
+        <TextView
+            android:id="@+id/singleViewTaskPhase"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/singtaskphase"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/singleViewTaskDescription"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="134dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="singleTaskDescription"
+        android:text="@string/singletaskdescription"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/singleSpinnerAssignment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="308dp"
+        android:orientation="horizontal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTaskLog"
+            android:layout_width="219dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/singleViewTaskTeam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/singletaskteam"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerAssignedUsers"
+                android:layout_width="match_parent"
+                android:layout_height="282dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/toggleEditMode"
+            android:layout_width="140dp"
+            android:layout_height="75dp"
+            android:onClick="onCourierEditTask"
+            android:text="@string/edit" />
+
+        <Button
+            android:id="@+id/courierNewLog"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_weight="1"
+            android:text="@string/log_wip" />
+
+        <ToggleButton
+            android:id="@+id/toggleTeamActions"
+            android:layout_width="132dp"
+            android:layout_height="75dp"
+            android:onClick="onToggleTeamActions"
+            android:text="@string/join_team"
+            android:textOff="@string/join_team"
+            android:textOn="@string/leave_team" />
+
+    </LinearLayout>
 
 </LinearLayout>

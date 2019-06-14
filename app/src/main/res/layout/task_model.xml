@@ -14,14 +14,15 @@
             android:id="@+id/viewTaskName"
             android:layout_width="336dp"
             android:layout_height="wrap_content"
-            android:text="Task Name"
+            android:text="@string/task_name"
             android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/viewTask_Image"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/view_task"
             app:srcCompat="@drawable/ic_view" />
 
     </LinearLayout>
@@ -29,19 +30,21 @@
     <TextView
         android:id="@+id/viewTaskDescription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Task Description"
+        android:layout_height="50dp"
+        android:text="@string/task_description"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/viewTaskStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Task Status"
+        android:text="@string/task_status"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/spacer"
+        android:id="@+id/viewTaskID"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/task_id"
+        android:visibility="invisible" />
 </LinearLayout>

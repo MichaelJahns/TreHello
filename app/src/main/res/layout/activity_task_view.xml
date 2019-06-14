@@ -24,13 +24,13 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/courierAllTasks"
+        android:id="@+id/courierNewTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:onClick="onCourierForm"
-        android:text="New Task"
+        android:text="@string/new_task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
