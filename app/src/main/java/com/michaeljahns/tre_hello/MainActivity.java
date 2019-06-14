@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         toggleLogActions = findViewById(R.id.toggleLogActions);
         courierLog = findViewById(R.id.toggleLogActions);
         courierProfile = findViewById(R.id.courierProfileEdit);
-        courierAllTasks = findViewById(R.id.courierAllTasks);
+        courierAllTasks = findViewById(R.id.courierNewTask);
 
         displayName = findViewById(R.id.viewDisplayName);
     }
