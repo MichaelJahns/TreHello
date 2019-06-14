@@ -1,7 +1,12 @@
 # TreHello
-My unique interpretation of a a trello board
+My unique interpretation of a a trello board, now with an available APK!
+If you would like to install this App on your android device, TreHello.apk is available for download, you can use this [resource](https://www.androidpit.com/android-for-beginners-what-is-an-apk-file) if you arent sure how to download it on your machine
 
 ## Log
+
+#### Day Eight
+* Builds APK and places it at top level of REPO
+* Adds an accessibility test to every view important for accessibility
 
 #### Day Seven
 * Cleaned Strings
