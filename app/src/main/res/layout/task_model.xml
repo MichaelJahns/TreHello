@@ -41,7 +41,9 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/spacer"
+        android:id="@+id/viewTaskID"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Task ID"
+        android:visibility="invisible" />
 </LinearLayout>

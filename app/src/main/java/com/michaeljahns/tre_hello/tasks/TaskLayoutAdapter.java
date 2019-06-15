@@ -1,5 +1,7 @@
 package com.michaeljahns.tre_hello.tasks;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.michaeljahns.tre_hello.R;
+import com.michaeljahns.tre_hello.tasks.activities.SingleTaskActivity;
 
 import java.util.List;
 
@@ -28,22 +31,22 @@ public class TaskLayoutAdapter extends RecyclerView.Adapter<TaskLayoutAdapter.Ta
             taskDescription = itemView.findViewById(R.id.viewTaskDescription);
             taskStatus = itemView.findViewById(R.id.viewTaskStatus);
             taskPeer = itemView.findViewById(R.id.viewTask_Image);
-
-            taskPeer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //TODO: Create Activity for single Task view
-                    // Todo: on that view allow users to self assign tasks using their userID
-                    // Todo: Display Assigned status in a way that makes sense
-                }
-            });
-
         }
 
-        public void setTask(Task task) {
+        public void setTask(final Task task) {
+            final Task farts = task;
             this.taskName.setText(task.getTask());
             this.taskDescription.setText(task.getDescription());
             this.taskStatus.setText("Status: " + task.getStatus());
+            this.taskPeer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = itemView.getContext();
+                    Intent intent = new Intent(context, SingleTaskActivity.class);
+                    intent.putExtra("taskID", task.getTaskID());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
